@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Carbon;
 use Laravel\Scout\Searchable;
@@ -56,13 +57,17 @@ class Product extends Model
      *
      * @var array
      */
-    protected $with = ['stocks'];
+    protected $with = ['stocks', 'authors'];
 
     public function stocks(): HasMany
     {
         return $this->hasMany(ProductStock::class);
     }
 
+    public function authors(): BelongsToMany
+    {
+        return $this->belongsToMany(Author::class);
+    }
 
     /**
      * Get the value used to index the model.

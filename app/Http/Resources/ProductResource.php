@@ -20,7 +20,8 @@ class ProductResource extends JsonResource
             'ean' => $this->ean,
             'sku' => $this->sku,
             'is_in_stock' => $this->is_in_stock,
-            'stocks' => StockResource::collection($this->stocks)
+            'stocks' => StockResource::collection($this->stocks),
+            'authors' => AuthorResource::collection($this->authors)
         ];
     }
 }
