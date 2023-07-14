@@ -48,7 +48,15 @@ class Product extends Model
     use HasFactory, Searchable;
 
     //TODO: add 'bestseller' option. Maybe the amount of sold copies in the last two months
+    //TODO: add author do model and search index
     protected $appends = ['is_in_stock'];
+
+    /**
+     * The relationships that should always be loaded.
+     *
+     * @var array
+     */
+    protected $with = ['stocks'];
 
     public function stocks(): HasMany
     {

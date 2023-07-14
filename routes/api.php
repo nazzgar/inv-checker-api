@@ -35,11 +35,16 @@ Route::get('/products', function () {
 });
 
 Route::get('/search/{search}', function (string $search) {
-    return Product::search($search)->get();
+    return new ProductCollection(Product::search($search)->get());
 });
 
 
 Route::get('/test', function () {
     $product_count = Product::all()->count();
     return DB::table('products')->inRandomOrder()->limit(round(0.1 * $product_count))->get();
+});
+
+
+Route::get('/{warehose}/products', function (string $warehouse) {
+
 });

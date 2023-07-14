@@ -5,22 +5,20 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ProductResource extends JsonResource
+class StockResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
      *
      * @return array<string, mixed>
+     * another approach: setting relationships manualy to counteract lazy loading many records
+     * @link https://freek.dev/2311-increase-performance-by-using-eloquents-setrelation-method
      */
     public function toArray(Request $request): array
     {
         return [
-            'name' => $this->name,
-            'description' => $this->description,
-            'ean' => $this->ean,
-            'sku' => $this->sku,
-            'is_in_stock' => $this->is_in_stock,
-            'stocks' => StockResource::collection($this->stocks)
+            'stock' => $this->stock,
+            'warehouse' => $this->warehouse->name
         ];
     }
 }
