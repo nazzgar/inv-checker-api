@@ -42,6 +42,12 @@ use Laravel\Scout\Searchable;
  * @method static Builder|Product whereUpdatedAt($value)
  * @method static ProductCollection<int, static> all($columns = ['*'])
  * @method static ProductCollection<int, static> get($columns = ['*'])
+ * @property-read Collection<int, \App\Models\Author> $authors
+ * @property-read int|null $authors_count
+ * @property-read bool $is_in_stock
+ * @property-read Collection<int, \App\Models\ProductStock> $stocks
+ * @method static ProductCollection<int, static> all($columns = ['*'])
+ * @method static ProductCollection<int, static> get($columns = ['*'])
  * @mixin Eloquent
  */
 class Product extends Model

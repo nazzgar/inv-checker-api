@@ -26,6 +26,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductStock> $stocks
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductStock> $stocks
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductStock> $stocks
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductStock> $stocks
  * @mixin \Eloquent
  */
 class Warehouse extends Model
