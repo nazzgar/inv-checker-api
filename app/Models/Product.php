@@ -88,10 +88,12 @@ class Product extends Model
 
     public function toSearchableArray(): array
     {
+        $authors = $this->authors->pluck('name');
         return [
             'name' => $this->name,
             'ean' => $this->ean,
             'sku' => $this->sku,
+            'authors' => $authors,
         ];
     }
 
