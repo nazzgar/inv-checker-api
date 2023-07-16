@@ -24,6 +24,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @method static \Illuminate\Database\Eloquent\Builder|Author whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Author whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Author whereUpdatedAt($value)
+ * @property-read \App\Collections\ProductCollection<int, \App\Models\Product> $products
  * @mixin \Eloquent
  */
 class Author extends Model

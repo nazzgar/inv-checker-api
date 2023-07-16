@@ -2,32 +2,39 @@
 
 namespace App\Models;
 
+use Database\Factories\WarehouseFactory;
+use Eloquent;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 /**
  * App\Models\Warehouse
  *
  * @property int $id
  * @property string $name
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductStock> $stocks
+ * @property Carbon|null $created_at
+ * @property Carbon|null $updated_at
+ * @property-read Collection<int, ProductStock> $stocks
  * @property-read int|null $stocks_count
- * @method static \Database\Factories\WarehouseFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Warehouse newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Warehouse newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Warehouse query()
- * @method static \Illuminate\Database\Eloquent\Builder|Warehouse whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Warehouse whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Warehouse whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Warehouse whereUpdatedAt($value)
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductStock> $stocks
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductStock> $stocks
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductStock> $stocks
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ProductStock> $stocks
- * @mixin \Eloquent
+ * @method static WarehouseFactory factory($count = null, $state = [])
+ * @method static Builder|Warehouse newModelQuery()
+ * @method static Builder|Warehouse newQuery()
+ * @method static Builder|Warehouse query()
+ * @method static Builder|Warehouse whereCreatedAt($value)
+ * @method static Builder|Warehouse whereId($value)
+ * @method static Builder|Warehouse whereName($value)
+ * @method static Builder|Warehouse whereUpdatedAt($value)
+ * @property-read Collection<int, ProductStock> $stocks
+ * @property-read Collection<int, ProductStock> $stocks
+ * @property-read Collection<int, ProductStock> $stocks
+ * @property-read Collection<int, ProductStock> $stocks
+ * @property-read Collection<int, \App\Models\ProductStock> $stocks
+ * @mixin Eloquent
  */
 class Warehouse extends Model
 {
@@ -36,5 +43,10 @@ class Warehouse extends Model
     public function stocks(): HasMany
     {
         return $this->hasMany(ProductStock::class);
+    }
+
+    public function getSearchIndexName(): string
+    {
+        return 'is_in_stock_' . Str::slug($this->name);
     }
 }
