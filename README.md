@@ -21,6 +21,9 @@ https://learn.microsoft.com/pl-pl/mem/intune/configuration/kiosk-settings-window
 ### Installation
 Using Laravel Sail:
 ```
+cp .env.example .env
+```
+```
 docker run --rm \
 -u "$(id -u):$(id -g)" \
 -v "$(pwd):/var/www/html" \
@@ -30,4 +33,7 @@ composer install --ignore-platform-reqs
 ```
 ```
 ./vendor/bin/sail up -d
+```
+```
+./vendor/bin/sail artisan migrate
 ```
