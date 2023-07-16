@@ -10,9 +10,11 @@ class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     * TODO: use batch insert to speed up seeding
+     * @link https://laravelproject.com/how-to-seed-records-in-laravel-quickly/
      */
     public function run(): void
     {
-        Product::factory()->count(100)->create()->each(fn(Product $model) => $model->authors()->attach(Author::all()->random(rand(1, 3))));
+        Product::factory()->count(100000)->create()->each(fn(Product $model) => $model->authors()->attach(Author::all()->random(rand(1, 3))));
     }
 }
