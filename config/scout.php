@@ -136,7 +136,9 @@ return [
         'key' => env('MEILISEARCH_KEY'),
         'index-settings' => [
             Product::class => [
-                'sortableAttributes' => ['is_in_stock']
+                'sortableAttributes' => ['is_in_stock'],
+                'filterableAttributes' => ['is_in_stock_warszawa', 'is_in_stock_krakow', 'is_in_stock_wroclaw', 'is_in_stock_gdynia', 'is_in_stock_poznan'],
+                'searchableAttributes' => ['name', 'ean', 'authors.name']
             ]
         ],
     ],
